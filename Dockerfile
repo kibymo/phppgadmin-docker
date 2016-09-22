@@ -7,7 +7,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl locales
 
 # Configure timezone and locale
-RUN echo "Europe/Stockholm" > /etc/timezone && \
+RUN echo "Asia/Taipei" > /etc/timezone && \
 	dpkg-reconfigure -f noninteractive tzdata
 RUN export LANGUAGE=en_US.UTF-8 && \
 	export LANG=en_US.UTF-8 && \
@@ -25,8 +25,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y php5-cli php5 php5-mcrypt php5-curl php5-pgsql postgresql-contrib phppgadmin
  
 # Let's set the default timezone in both cli and apache configs
-RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Stockholm/g' /etc/php5/cli/php.ini && \
-	sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Europe\/Stockholm/g' /etc/php5/apache2/php.ini
+RUN sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Asia\/Taipei/g' /etc/php5/cli/php.ini && \
+	sed -i 's/\;date\.timezone\ \=/date\.timezone\ \=\ Asia\/Taipei/g' /etc/php5/apache2/php.ini
 
 # Setup Composer
 RUN curl -sS https://getcomposer.org/installer | php && \
@@ -40,7 +40,7 @@ RUN sed -i 's/;include_path = ".:\/usr\/share\/php"/include_path = ".:\/var\/www
 RUN a2enmod rewrite
 
 # Fix phppgadmin
-ADD ./phppgadmin.conf /etc/apache2/conf.d/phppgadmin
+ADD ./phppgadmin.conf /etc/apache2/conf-available/phppgadmin.conf
 ADD ./config.inc.php /usr/share/phppgadmin/conf/config.inc.php
 RUN sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/g' /etc/php5/apache2/php.ini 
 
