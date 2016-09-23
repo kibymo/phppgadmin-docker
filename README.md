@@ -30,14 +30,15 @@ The pre built image can be downloaded using docker directly. After that you do n
 ### Build the docker image by yourself
 If you prefer you can easily build the docker image by yourself. After this the image is ready for use on your machine and can be used for multiple starts.
 
+	$ mkdir phppgadmin-docker
 	$ cd phppgadmin-docker
-	$ sudo docker build -t jacksoncage/phppgadmin .
+	$ docker build -t kibymo/phppgadmin .
 
 
 ### Start the container
 The container has all pre requisites set up to run phpPgAdmin. Specify all needed environment variables.
 
-	$ sudo docker run -i -d -p 80 -e APACHE_SERVERNAME=jacksoncage.se -e POSTGRES_HOST=localhost -e POSTGRES_PORT=5432 jacksoncage/phppgadmin
+	$ docker run -i -d -p 80:80 -e APACHE_SERVERNAME=jacksoncage.se -e POSTGRES_HOST=localhost -e POSTGRES_PORT=5432 kibymo/phppgadmin
 
 Trying the browser on url http://localhost/phppgadmin.
 
