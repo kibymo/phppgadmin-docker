@@ -23,7 +23,7 @@ Apache and Postgres will make of the following environment variables.
 
 ### Use the pre built image
 The pre built image can be downloaded using docker directly. After that you do not need to use this command again, you will have the image on your machine.
-# not test
+### not test
 	$ sudo docker pull kibymo/phppgadmin
 
 
